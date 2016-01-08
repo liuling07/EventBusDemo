@@ -25,22 +25,4 @@
         android:layout_height="wrap_content"
         android:text="UnRegist"/>
 
-    <Button
-        android:id="@+id/send_broadcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send Sticky Broadcast"/>
-
-    <Button
-        android:id="@+id/regist_broadcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Regist Broadcast"/>
-
-    <Button
-        android:id="@+id/unregist_broadcast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UnRegist Broadcast"/>
-
 </LinearLayout>
