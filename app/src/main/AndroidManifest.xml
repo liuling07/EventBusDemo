@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lling.eventbusdemo" >
 
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,6 +21,10 @@
         <activity
             android:name=".SecondActivity"
             android:label="@string/title_activity_second" >
+        </activity>
+        <activity
+            android:name=".StickyModeActivity"
+            android:label="@string/title_activity_sticky_mode" >
         </activity>
     </application>
 

@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.button2sticky).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, StickyModeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //在产生事件的线程中执行
@@ -71,18 +78,6 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             mMessageView.setText("Message from SecondActivity:" + intent.getStringExtra("message"));
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                        }
-                    });
-                }
-            }).start();
         }
     }
 }
