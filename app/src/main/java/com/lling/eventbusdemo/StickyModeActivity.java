@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 
 import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
 
 public class StickyModeActivity extends AppCompatActivity {
 
@@ -23,7 +25,7 @@ public class StickyModeActivity extends AppCompatActivity {
         findViewById(R.id.regist).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().registerSticky(StickyModeActivity.this);
+                EventBus.getDefault().register(StickyModeActivity.this);
             }
         });
 
@@ -36,20 +38,24 @@ public class StickyModeActivity extends AppCompatActivity {
 
     }
 
-    public void onEvent(MessageEvent messageEvent) {
-        Log.e("onEvent", messageEvent.getMessage());
+    @Subscribe(threadMode = ThreadMode.PostThread, sticky = true)
+    public void onMessageEventPostThread(MessageEvent messageEvent) {
+        Log.e("PostThread", messageEvent.getMessage());
     }
 
-    public void onEventMainThread(MessageEvent messageEvent) {
-        Log.e("onEventMainThread", messageEvent.getMessage());
+    @Subscribe(threadMode = ThreadMode.MainThread, sticky = true)
+    public void onMessageEventMainThread(MessageEvent messageEvent) {
+        Log.e("MainThread", messageEvent.getMessage());
     }
 
-    public void onEventBackgroundThread(MessageEvent messageEvent) {
-        Log.e("onEventBackgroundThread", messageEvent.getMessage());
+    @Subscribe(threadMode = ThreadMode.BackgroundThread, sticky = true)
+    public void onMessageEventBackgroundThread(MessageEvent messageEvent) {
+        Log.e("BackgroundThread", messageEvent.getMessage());
     }
 
-    public void onEventAsync(MessageEvent messageEvent) {
-        Log.e("onEventAsync", messageEvent.getMessage());
+    @Subscribe(threadMode = ThreadMode.Async, sticky = true)
+    public void onMessageEventAsync(MessageEvent messageEvent) {
+        Log.e("Async", messageEvent.getMessage());
     }
 
 }

@@ -22,23 +22,23 @@ public class SecondActivity extends AppCompatActivity {
         findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.e("postEvent", Thread.currentThread().getName());
-                        String message = mMessageET.getText().toString();
-                        if(TextUtils.isEmpty(message)) {
-                            message = "defaule message";
-                        }
-                        EventBus.getDefault().post(new MessageEvent(message));
-                    }
-                }).start();
-//                Log.e("postEvent", Thread.currentThread().getName());
-//                String message = mMessageET.getText().toString();
-//                if(TextUtils.isEmpty(message)) {
-//                    message = "defaule message";
-//                }
-//                EventBus.getDefault().post(new MessageEvent(message));
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Log.e("postEvent", Thread.currentThread().getName());
+//                        String message = mMessageET.getText().toString();
+//                        if(TextUtils.isEmpty(message)) {
+//                            message = "defaule message";
+//                        }
+//                        EventBus.getDefault().post(new MessageEvent(message));
+//                    }
+//                }).start();
+                Log.e("postEvent", Thread.currentThread().getName());
+                String message = mMessageET.getText().toString();
+                if(TextUtils.isEmpty(message)) {
+                    message = "defaule message";
+                }
+                EventBus.getDefault().post(new MessageEvent(message));
             }
         });
 

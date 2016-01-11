@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,24 +46,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //在产生事件的线程中执行
-    public void onEvent(MessageEvent messageEvent) {
-        Log.e("onEvent", Thread.currentThread().getName());
+    @Subscribe(threadMode = ThreadMode.PostThread)
+    public void onMessageEventPostThread(MessageEvent messageEvent) {
+        Log.e("PostThread", Thread.currentThread().getName());
     }
 
     //在UI线程中执行
-    public void onEventMainThread(MessageEvent messageEvent) {
-        mMessageView.setText("Message from SecondActivity:" + messageEvent.getMessage());
-        Log.e("onEventMainThread", Thread.currentThread().getName());
+    @Subscribe(threadMode = ThreadMode.MainThread)
+    public void onMessageEventMainThread(MessageEvent messageEvent) {
+        Log.e("MainThread", Thread.currentThread().getName());
     }
 
     //如果产生事件的是UI线程，则在新的线程中执行。如果产生事件的是非UI线程，则在产生事件的线程中执行
-    public void onEventBackgroundThread(MessageEvent messageEvent) {
-        Log.e("onEventBackgroundThread", Thread.currentThread().getName());
+    @Subscribe(threadMode = ThreadMode.BackgroundThread)
+    public void onMessageEventBackgroundThread(MessageEvent messageEvent) {
+        Log.e("BackgroundThread", Thread.currentThread().getName());
     }
 
     //无论产生事件的是否是UI线程，都在新的线程中执行
-    public void onEventAsync(MessageEvent messageEvent) {
-        Log.e("onEventAsync", Thread.currentThread().getName());
+    @Subscribe(threadMode = ThreadMode.Async)
+    public void onMessageEventAsync(MessageEvent messageEvent) {
+        Log.e("Async", Thread.currentThread().getName());
     }
 
     @Override
